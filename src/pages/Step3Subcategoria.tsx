@@ -6,13 +6,14 @@ import { SUBCATEGORIAS, CATEGORIAS } from '../types'
 interface Props {
   viaje: Viaje
   categoria: Categoria
+  preSelectedSub?: string
   onBack: () => void
   onConfirm: (subcategoria: string, descripcionOtro: string | null) => void
   saving: boolean
 }
 
-export default function Step3Subcategoria({ viaje, categoria, onBack, onConfirm, saving }: Props) {
-  const [selected, setSelected] = useState<string | null>(null)
+export default function Step3Subcategoria({ viaje, categoria, preSelectedSub, onBack, onConfirm, saving }: Props) {
+  const [selected, setSelected] = useState<string | null>(preSelectedSub ?? null)
   const [otroText, setOtroText] = useState('')
 
   const catConfig = CATEGORIAS.find(c => c.id === categoria)!
@@ -68,6 +69,20 @@ export default function Step3Subcategoria({ viaje, categoria, onBack, onConfirm,
           )
         })}
       </div>
+
+      {/* Botón confirmar para selección directa (no Otro) */}
+      {selected && selected !== 'Otro' && (
+        <div className="animate-fade-up">
+          <button
+            disabled={saving}
+            onClick={() => onConfirm(selected, null)}
+            className="w-full py-4 rounded-2xl font-bold text-white text-base transition tap-active disabled:opacity-40"
+            style={{ background: '#FF6C02' }}
+          >
+            {saving ? 'Guardando…' : 'Registrar incidencia'}
+          </button>
+        </div>
+      )}
 
       {/* Textarea para "Otro" */}
       {selected === 'Otro' && (

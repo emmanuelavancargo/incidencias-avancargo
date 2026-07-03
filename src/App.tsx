@@ -89,12 +89,21 @@ export default function App() {
       <div className="flex-1 overflow-y-auto">
         {step === 1 && <Step1Viaje onSelect={handleViajeSelect} />}
         {step === 2 && state.viaje && (
-          <Step2Categoria viaje={state.viaje} onBack={() => setStep(1)} onSelect={handleCategoriaSelect} />
+          <Step2Categoria
+            viaje={state.viaje}
+            onBack={() => setStep(1)}
+            onSelect={handleCategoriaSelect}
+            onDirectSelect={(categoria, subcategoria) => {
+              setState(s => ({ ...s, categoria, subcategoria }))
+              setStep(3)
+            }}
+          />
         )}
         {step === 3 && state.viaje && state.categoria && (
           <Step3Subcategoria
             viaje={state.viaje}
             categoria={state.categoria}
+            preSelectedSub={state.subcategoria}
             onBack={() => setStep(2)}
             onConfirm={handleConfirm}
             saving={saving}
