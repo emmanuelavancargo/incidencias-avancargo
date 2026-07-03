@@ -1,0 +1,5 @@
+@echo off
+cd /d "C:\Users\Emmanuel Estabre\Desktop\incidencias-avancargo"
+set VITE_SUPABASE_URL=https://ojjllboudsqdolpqjusj.supabase.co
+set VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qamxsYm91ZHNxZG9scHFqdXNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwMTA1MjYsImV4cCI6MjA5ODU4NjUyNn0.7Kbwu_GvxFy-osel5hpPF3wXZViJ9yZvgY5Ibb4lTXk
+npm run dev -- --port 5174
